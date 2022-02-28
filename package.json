@@ -1,6 +1,6 @@
 {
   "name": "kinect2",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Nodejs library to access the kinect 2 data from the official MS SDK",
   "repository": "https://github.com/wouterverweirder/kinect2",
   "keywords": [
@@ -15,20 +15,18 @@
   "homepage": "https://github.com/wouterverweirder/kinect2",
   "main": "lib/kinect2.js",
   "dependencies": {
-    "node-addon-api": "^1.0.0",
-    "prebuild-install": "^6.1.3",
-    "prebuild": "^10.0.1"
+		"node-addon-api": "^1.0.0",
+		"node-gyp": "^8.4.1",
+		"node-gyp-build": "^4.3.0"
   },
   "engines": {
     "node": ">= 10.16.0"
   },
   "scripts": {
     "test": "npm run clean && npm run prebuild && node test.js",
-		"install": "prebuild-install -t 4 --runtime napi || prebuild -t 4 --runtime napi",
-		"prebuild-install": "prebuild-install -t 4 --runtime napi --verbose",
-		"prebuild": "prebuild -t 4 --runtime napi",
+		"install": "node-gyp-build",
+		"rebuild": "node-gyp rebuild",
 		"clean": "rimraf ./lib/binding && rimraf ./build && rimraf ./prebuilds",
-    "package": "prebuild -t 4 --runtime napi -u",
     "start": "cd ./examples/electron && npm start",
     "prepublishOnly": "rimraf ./examples/**/node_modules"
   },
@@ -40,7 +38,7 @@
     "package_name": "kinect2-v{version}-napi-v4-{platform}-{arch}.tar.gz",
     "host": "https://github.com/wouterverweirder/kinect2/releases/download/",
     "napi_versions": [
-      4
+      6
     ]
   },
   "devDependencies": {

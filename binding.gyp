@@ -25,11 +25,11 @@
     {
       "target_name": "action_after_build",
       "type": "none",
-      "dependencies": [ "<(module_name)" ],
+      "dependencies": [ "kinect2" ],
       "copies": [
         {
-          "files": [ "<(PRODUCT_DIR)/<(module_name).node" ],
-          "destination": "<(module_path)"
+          "files": [ "<(PRODUCT_DIR)/kinect2.node" ],
+          "destination": "./lib/binding"
         }
       ]
     }
